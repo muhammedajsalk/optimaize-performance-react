@@ -1,5 +1,5 @@
 
-import React, {useState} from "react"
+import React, {useState,memo} from "react"
 import './App.css';
 
 function App() {
@@ -23,10 +23,11 @@ function App() {
   );
 }
 
-
-function ChildComponent({count}){
+const ChildComponent=memo(function ChildComponent({count}){
   console.log("Rendering child components");
   return <h4>Count from Child component is {count}</h4>
-}
+})
+
+
 
 export default App;
