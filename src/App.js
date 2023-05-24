@@ -1,6 +1,10 @@
 
-import React, {useState,memo,useCallback} from "react"
+import React, {useState,memo,useMemo,useCallback} from "react"
 import './App.css';
+const myFunction =(count)=>{
+  for (let i=0;i<100000;i++){}
+  return count * 3;
+}
 
 function App() {
 
@@ -9,6 +13,10 @@ function App() {
 
   const IncrementCount= useCallback(()=>{
     setCount(count+1);
+  },[count])
+
+  const myCount=useMemo(()=>{
+    return myFunction(count);
   },[count])
 
   return (
@@ -20,7 +28,7 @@ function App() {
        />
        <button onClick={()=>setCount(count+1)}>Increment Count</button>
        <h3>Text input is {input}</h3>
-       <h3>Count is {count}</h3>
+       <h3>Count is {myCount}</h3>
        <hr/>
        <ChildComponent IncrementCount={IncrementCount} count={count}/>
     </div>
