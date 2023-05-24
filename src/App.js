@@ -1,32 +1,19 @@
 
-import React, {useState,memo} from "react"
+import React,{Suspense, lazy} from "react"
 import './App.css';
+const Users =lazy(()=>import("./Components/Users"))
+const Posts =lazy(()=>import("./Components/Posts"))
 
 function App() {
-
-  const [input,setInput]=useState("")
-  const [count,setCount]=useState(0);
-
   return (
     <div className="App">
-       <input
-          type='text'
-          value={input}
-          onChange={(e)=>setInput(e.target.value)}
-       />
-       <button onClick={()=>setCount(count+1)}>Increment Count</button>
-       <h3>Text input is {input}</h3>
-       <h3>Count is {count}</h3>
-       <hr/>
-       <ChildComponent count={count}/>
+      <Suspense fallback={<h3>Loading...</h3>}>
+        <Users/>
+        <Posts/>
+      </Suspense>
     </div>
-  );
+  )
 }
-
-const ChildComponent=memo(function ChildComponent({count}){
-  console.log("Rendering child components");
-  return <h4>Count from Child component is {count}</h4>
-})
 
 
 
