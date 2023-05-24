@@ -4,19 +4,28 @@ import './App.css';
 
 function App() {
 
-  const [input,setInput]=useState("")
+  
 
   return (
     <div className="App">
-       <input
+       <FormInput/>
+       <ChildComponent/>
+    </div>
+  );
+}
+
+function FormInput(){
+  const [input,setInput]=useState("")
+  return(
+    <>
+      <input
           type='text'
           value={input}
           onChange={(e)=>setInput(e.target.value)}
        />
        <h3>Text input is {input}</h3>
-       <ChildComponent/>
-    </div>
-  );
+    </>
+  )
 }
 
 function ChildComponent(){
